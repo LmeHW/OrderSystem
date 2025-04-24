@@ -238,6 +238,7 @@ export default function IndexScreen() {
         </View>
       </View>
       
+      {/* 应该修改为最后修改时间 */}
       <Text style={styles.orderCode}>
         {formatDate(item.created_at)}
       </Text>
@@ -283,10 +284,15 @@ export default function IndexScreen() {
             <Text style={styles.statLabel}>待收款</Text>
             <Text style={[styles.statValue, { color: 'orange' }]}>{stats.pendingPayment}</Text>
           </View>
-          <View style={styles.statBox}>
+          <TouchableOpacity
+            style={styles.statBox}
+            onPress={() => {
+              router.push('/analysis' as any);
+            }}
+            >
             <Text style={styles.statLabel}>本月销售</Text>
             <Text style={styles.statValue}>¥{stats.monthSales.toLocaleString()}</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -348,6 +354,7 @@ export default function IndexScreen() {
           </TouchableOpacity>
         </View>
         
+        {/* Order List */}
         <FlatList
           data={orders}
           renderItem={renderOrderItem}
