@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Modal, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
+import { Modal, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Easing, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { supabase } from '@/lib/supabase';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function UserSidebar({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function UserSidebar({ visible, onClose }: { visible: boolean; on
   // 点击退出登录项时，执行登出逻辑并跳转到登录界面，同时标记为登出状态
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    // 如果你有使用 AuthContext，请在这里更新用户状态（例如：setUser(null)）
+    // 如果有 AuthContext，也可以更新用户状态（例如：setUser(null)）
     router.replace('/login');
   };
 
@@ -59,10 +60,30 @@ export default function UserSidebar({ visible, onClose }: { visible: boolean; on
         <TouchableOpacity style={styles.overlay} activeOpacity={1} onPress={handleClose}>
           <TouchableWithoutFeedback>
             <Animated.View style={[styles.sidebar, { transform: [{ translateX }] }]}>
-              <Text style={styles.title}>👤 用户信息</Text>
-              <Text style={styles.item}>查看资料</Text>
-              <Text style={styles.item}>设置</Text>
-              <TouchableOpacity onPress={handleLogout}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+                <FontAwesome
+                  name="user"
+                  size={25}
+                  style={styles.itemIcon}
+                />
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.title, { marginTop: 12, textAlign: 'center' }]}>
+                    用户信息
+                  </Text>
+                </View>
+                {/* Empty view to balance the header so the text stays centered */}
+                <View style={{ width: 25 }} />
+              </View>
+              <TouchableOpacity style={styles.itemContainer}>
+                <FontAwesome name="info-circle" size={20} style={styles.itemIcon} />
+                <Text style={styles.item}>查看资料</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemContainer}>
+                <FontAwesome name="cog" size={20} style={styles.itemIcon} />
+                <Text style={styles.item}>设置</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.itemContainer} onPress={handleLogout}>
+                <FontAwesome name="sign-out" size={20} style={styles.itemIcon} />
                 <Text style={styles.item}>退出登录</Text>
               </TouchableOpacity>
             </Animated.View>
@@ -91,10 +112,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 16,
   },
-  item: {
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 10,
-    fontSize: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+  },
+  itemIcon: {
+    marginRight: 10,
+    color: '#555',
+  },
+  item: {
+    fontSize: 16,
   },
 });

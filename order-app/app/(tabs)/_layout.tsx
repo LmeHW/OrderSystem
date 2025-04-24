@@ -4,6 +4,7 @@ import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
 
+
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
@@ -44,13 +45,7 @@ export default function TabLayout() {
               </Pressable>
           ),
         }}>
-        <Tabs.Screen
-          name="stock"
-          options={{
-            title: '仓库',
-            tabBarIcon: ({ color }) => <TabBarIcon name="pie-chart" color={color} />,
-          }}
-        />
+
         <Tabs.Screen
           name="index"
           options={{
@@ -59,10 +54,24 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
+          name="stock"
+          options={{
+            title: '仓库',
+            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          }}
+        />
+        <Tabs.Screen
           name="analysis"
           options={{
             title: '分析',
             tabBarIcon: ({ color }) => <TabBarIcon name="pie-chart" color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="customer"
+          options={{
+            title: '客户',
+            tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
           }}
         />
       </Tabs>

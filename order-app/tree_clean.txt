@@ -1,0 +1,49 @@
+├── .gitignore
+├── app
+│   ├── (tabs)
+│   │   ├── analysis.tsx
+│   │   ├── customer.tsx
+│   │   ├── index.tsx
+│   │   ├── stock.tsx
+│   │   └── _layout.tsx
+│   ├── +html.tsx
+│   ├── +not-found.tsx
+│   ├── index.tsx
+│   ├── login.tsx
+│   ├── modal.tsx
+│   └── _layout.tsx
+├── app.json
+├── assets
+│   ├── fonts
+│   │   └── SpaceMono-Regular.ttf
+│   └── images
+│       ├── adaptive-icon.png
+│       ├── favicon.png
+│       ├── favicon_1.png
+│       ├── icon.png
+│       └── splash-icon.png
+├── components
+│   ├── AuthGate.tsx
+│   ├── EditScreenInfo.tsx
+│   ├── ExternalLink.tsx
+│   ├── StyledText.tsx
+│   ├── Themed.tsx
+│   ├── useClientOnlyValue.ts
+│   ├── useClientOnlyValue.web.ts
+│   ├── useColorScheme.ts
+│   ├── useColorScheme.web.ts
+│   ├── UserSidebar.tsx
+│   └── __tests__
+│       └── StyledText-test.js
+├── constants
+│   └── Colors.ts
+├── contexts
+│   └── auth.tsx
+├── expo-env.d.ts
+├── lib
+│   └── supabase.ts
+├── package-lock.json
+├── package.json
+├── tree.js
+├── tree_clean.txt
+└── tsconfig.json
